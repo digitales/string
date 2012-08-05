@@ -37,6 +37,10 @@ class String_Date {
      */
     public static function convert_to_timestamp( $string )
     {
+        if ( empty($string ) ){
+            return null;
+        }
+        
         if ( strlen( $string ) && is_numeric( $string) ){
             return $string;
         }
