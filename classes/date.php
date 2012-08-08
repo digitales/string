@@ -145,4 +145,35 @@ class String_Date {
         
         return array( 'month' => $month, 'day' => $day );
     }
+    
+
+    public static function calculate_difference( $start, $end )
+    {
+        return (int) $end - (int) $start;
+    }
+    
+    public static function display_difference( $difference )
+    {
+        $return = null;
+        
+        $hours      = intval(intval($difference) / 3600);
+        $minutes    = intval(($difference / 60) % 60);
+        
+        $hr = 'hrs';
+
+        if ( $hours == 1 ){
+            $hr = 'hr';
+        }
+        
+        $return = ( $hours > 0 )? $hours .' '. $hr  : '' ;
+        $return .= ( $minutes > 0 )? ' '.$minutes.' min' : '' ;
+        
+        return $return;
+    }
+    
+    public static function calculate_and_display_difference( $start, $end )
+    {        
+        return self::display_difference( self::calculate_difference( $start, $end ) );
+    }
+    
 }
