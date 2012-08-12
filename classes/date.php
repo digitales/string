@@ -152,7 +152,7 @@ class String_Date {
         return (int) $end - (int) $start;
     }
     
-    public static function display_difference( $difference )
+    public static function display_difference( $difference, $id = null )
     {
         $return = null;
         
@@ -164,16 +164,17 @@ class String_Date {
         if ( $hours == 1 ){
             $hr = 'hr';
         }
-        
-        $return = ( $hours > 0 )? $hours .' '. $hr  : '' ;
+        $return = '<span class="time" id="' . $id . '" value="'.$difference.'">';
+        $return .= ( $hours > 0 )? $hours .' '. $hr  : '' ;
         $return .= ( $minutes > 0 )? ' '.$minutes.' min' : '' ;
+        $return .= '</span>';
         
         return $return;
     }
     
-    public static function calculate_and_display_difference( $start, $end )
-    {        
-        return self::display_difference( self::calculate_difference( $start, $end ) );
+    public static function calculate_and_display_difference( $start, $end, $id = null )
+    {
+        return self::display_difference( self::calculate_difference( $start, $end ), $id );
     }
     
 }
