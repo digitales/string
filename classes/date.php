@@ -152,21 +152,31 @@ class String_Date {
         return (int) $end - (int) $start;
     }
     
+    
+    public static function split_into_hours_and_minutes( $difference )
+    {
+        $return = new \stdClass;
+        
+        $return->hours      = intval(intval($difference) / 3600);
+        $return->minutes    = intval(($difference / 60) % 60);
+        
+        return $return;
+    }
+    
     public static function display_difference( $difference, $id = null )
     {
         $return = null;
         
-        $hours      = intval(intval($difference) / 3600);
-        $minutes    = intval(($difference / 60) % 60);
+        $time = self::split_into_hours_and_minutes( $difference );
         
         $hr = 'hrs';
 
-        if ( $hours == 1 ){
+        if ( $time->hours == 1 ){
             $hr = 'hr';
         }
         $return = '<span class="time" id="' . $id . '" value="'.$difference.'">';
-        $return .= ( $hours > 0 )? $hours .' '. $hr  : '' ;
-        $return .= ( $minutes > 0 )? ' '.$minutes.' min' : '' ;
+        $return .= ( $time->hours > 0 )? $time->hours .' '. $hr  : '' ;
+        $return .= ( $time->minutes > 0 )? ' '.$time->minutes.' min' : '' ;
         $return .= '</span>';
         
         return $return;
