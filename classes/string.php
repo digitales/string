@@ -315,4 +315,22 @@ class String {
     	return $unicode;
     }
     
+    
+    /**
+     * Generate a random alpha numeric string
+     *
+     * @param int $string_length
+     * @return string
+     */
+    static public function generate_random( $string_length = 10 )
+    {    
+        $characters = 'abcdefghijklmnopqrstuvwxyz023456789';
+        
+        $string = '';
+        for ($i = 0; $i < $string_length; $i++) {
+            $string .= $characters[rand(0, strlen($characters) - 1)];
+        }   
+        return $string;
+    }
+    
 }
