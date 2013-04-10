@@ -333,4 +333,26 @@ class String {
         return $string;
     }
     
+    
+    /**
+     * Generate an excerpt of the text
+     *
+     * @param string $content
+     * @param integer $length
+     *
+     * @return string
+     */
+    static public function excerpt( $content, $length = 255 ){
+        
+
+        $excerpt = strip_tags( html_entity_decode( (string)$content, ENT_NOQUOTES, 'UTF-8' ) );
+
+		if (strlen($excerpt) > $length ) {
+			
+            $excerpt = substr($excerpt, 0, $length-3 ) . '...';
+		}
+        return $excerpt;
+    }
+    
+    
 }
